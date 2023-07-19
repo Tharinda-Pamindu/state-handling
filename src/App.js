@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [name, setName] = useState("");
 
   const increaseCounter = () => {
     setCount(count + 1);
@@ -11,6 +12,14 @@ function App() {
 
   const decreaseCount = () => {
     setCount(count - 1);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleInput = (event) => {
+    setName(event.target.value);
   };
 
   return (
@@ -26,6 +35,12 @@ function App() {
           </button>
         </div>
       </div>
+
+      <form onSubmit={handleSubmit}>
+        <h2>Hello {name}!</h2>
+        <input type="text" onChange={handleInput} />
+        <button type="Submit">Show</button>
+      </form>
     </div>
   );
 }
