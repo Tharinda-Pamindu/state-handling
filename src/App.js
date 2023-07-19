@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import { useState, useEffect } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState("");
+  const [showName, setShowName] = useState(false);
 
   const increaseCounter = () => {
     setCount(count + 1);
@@ -16,6 +17,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setShowName(true);
   };
 
   const handleInput = (event) => {
@@ -24,7 +26,7 @@ function App() {
 
   useEffect(() => {
     document.title = "Welcome " + name;
-  });
+  },[showName]);
 
   return (
     <div className="App">
@@ -39,6 +41,8 @@ function App() {
           </button>
         </div>
       </div>
+
+      {showName && <h2>Hello {name}!</h2>}
 
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleInput} />
