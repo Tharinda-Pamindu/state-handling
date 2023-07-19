@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +22,10 @@ function App() {
     setName(event.target.value);
   };
 
+  useEffect(() => {
+    document.title = "Welcome " + name;
+  });
+
   return (
     <div className="App">
       <div>
@@ -37,7 +41,6 @@ function App() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <h2>Hello {name}!</h2>
         <input type="text" onChange={handleInput} />
         <button type="Submit">Show</button>
       </form>
